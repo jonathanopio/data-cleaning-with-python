@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Data Cleaning</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static '/assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static '/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Maundy
+    * Updated: Sep 18 2023 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>CLEANLINESS</h2>
+                <p>What makes data clean?</p>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-briefcase"></i></div>
+                    <h4 class="title"><a href="">Uniqueness</a></h4>
+                    <p class="description">Calculate the percentage of unique values in each column. This can be an
+                        indicator of the diversity and variability of the data, as well as identify the %age of possible
+                        duplicates..</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-bar-chart"></i></div>
+                    <h4 class="title"><a href="">Consistency</a></h4>
+                    <p class="description">Check if data in each column adheres to a consistent format (e.g., if a
+                        column is supposed to contain percentages, check that all values are in percentage format).</p>
+                </div>
+                <div class="col-lg-4 col-md-6 icon-box">
+                    <div class="icon"><i class="bi bi-brightness-high"></i></div>
+                    <h4 class="title"><a href="">Completeness</a></h4>
+                    <p class="description">Calculate the percentage of missing values in the dataset. This helps assess
+                        how complete the dataset is.</p>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Section -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Header ======= -->
+<header id="header" class="d-flex align-items-center">
+    <div class="container d-flex flex-column align-items-center">
+
+        <h1>Data Cleaning</h1>
+        <h2>How clean is your data?</h2>
+
+
+        <div class="countdown d-flex justify-content-center" data-count="2023/12/3">
+            <div>
+                <h3>{{ unique }}</h3>
+                <h3>%</h3>
+                <h4>Unique</h4>
+            </div>
+            <div>
+                <h3>{{ consistent }}</h3>
+                <h3>%</h3>
+                <h4>Consistent</h4>
+            </div>
+            <div>
+                <h3>{{ complete }}</h3>
+                <h3>%</h3>
+                <h4>Complete</h4>
+            </div>
+        </div>
+
+        <div class="subscribe">
+            <h4>Please upload a CSV file to calculate the cleanliness score</h4>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file">
+            <button id="show" onclick="show()" type="submit" name="action" value="scan"
+                    class="btn-get-started scrollto">Scan
+            </button>
+        </form>
+
+
+    </div>
+</header><!-- End #header -->
+
+<section id="about" class="about">
+    <div class="container">
+        {#            <img src="{% static '/assets/img/score.png' %}" alt="Radar Chart">#}
+        <img id="image" src=""/>
+    </div>
+</section>
+
+
+<main id="main">
+    <div class="container d-flex flex-column align-items-center">
+        <div class="subscribe">
+            <h4>Here is what the score of your data might look like after we cleaned it</h4>
+        </div>
+    </div>
+</main>
+
+<header id="header" class="d-flex align-items-center">
+
+    <div class="container d-flex flex-column align-items-center">
+
+        {#        <h1>Data Cleaning</h1>#}
+        {#        <h2>How clean is your data?</h2>#}
+
+
+        <div class="countdown d-flex justify-content-center" data-count="2023/12/3">
+            <div>
+                <h3 id="1">{{ unique2 }}</h3>
+                <h3>%</h3>
+                <h4>Unique</h4>
+            </div>
+            <div>
+                <h3 id="2">{{ complete2 }}</h3>
+                <h3>%</h3>
+                <h4>Complete</h4>
+            </div>
+        </div>
+
+        <div class="subscribe">
+            <h4>Better?</h4>
+        </div>
+        <button type="submit" name="download">
+
+            <a href="{% static '/files/out.csv' %}" download="">Download Cleaned Data</a>
+        </button>
+        <br>
+        <div class="container d-flex flex-column align-items-center">
+            <div class="subscribe">
+                <h4>The column type tends to be a bit more nuanced, so we would recommend formatting the whole column in
+                    Microsoft EXCEL, and setting it to the desired type before saving your file as a CSV.</h4>
+            </div>
+        </div>
+
+        {#        <form method="post" enctype="multipart/form-data">#}
+        {#            {% csrf_token %}#}
+        {#            <input type="file" name="file">#}
+        {#            <button id="show-image" onclick="show()" type="submit" name="action" value="scan"#}
+        {#                    class="btn-get-started scrollto">Scan#}
+        {#            </button>#}
+        {#        </form>#}
+
+    </div>
+
+</header><!-- End #header -->
+
+
+<script>
+    function show() {
+        let image = document.getElementById("image");
+        image.src = "{% static '/assets/img/score.png' %}"
+        document.getElementById("show-image")
+            .style.display = "none";
+
+    }
+</script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

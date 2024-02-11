@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload a file</title>
+</head>
+<body>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <button id="show-image" type="submit" name="action" value="scan">Scan</button>
+    </form>
+    <img id="score" src="/Users/jopio/PycharmProjects/django_cleancsv/images/score.png">
+   <script>
+      const showImageButton = document.getElementById("show-image");
+      const myImage = document.getElementById("score");
+      showImageButton.addEventListener("click", () => {
+         myImage.style.display = "block";
+      });
+   </script>
+
+</body>
+</html>

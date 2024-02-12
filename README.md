@@ -1,6 +1,8 @@
 **DATA CLEANING WITH PYTHON:**
 
-**Goal**: Calculate messiness of a given CSV file, and make suggestions/perform cleaning on some attributes
+![](/images/img.png)
+
+**Goal**: Calculate the messiness of a given CSV file, and make suggestions/perform cleaning on some attributes
 
 **Platforms & Tools:**
 Python Django for HTML/JavaScript web application and interface

@@ -20,7 +20,9 @@ at non-coders who deal with large amounts of data, and need to do large-scale st
 
 
 In its current state, the code can detect the number of duplicates, the consistency of type within a column, and also the amount of missing/null values within 
-the dataset.
+the dataset, and display them as a set of percentage scores. It also develops a radar chart accordingly.
+
+![](/images/score.png)
 
 
 **Future Expansions:**

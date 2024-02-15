@@ -15,7 +15,7 @@ Plotly for radar charts and visualizations
 **Body:**
 
 This project began as a machine learning prediction model for salary data in the USA. After obtaining data from the U.S. Bureau of Labor Statistics website,
-I quickly realized that the data needed a lot of cleaning reformatting to be useful for an exploratory analysis.
+I quickly realized that the data needed a lot of cleaning and reformatting to be useful for an exploratory analysis.
 
 My professor and I decided to segue into an application that can clean and detect the cleanliness of datasets, and make suggestions for users. It was targeted
 at non-coders who deal with large amounts of data, and need to do large-scale statistical analysis.
